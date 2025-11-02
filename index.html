@@ -29,6 +29,39 @@
   </style>
 </head>
 <body>
-  <img src="worryfrog.webp" alt="Worry Frog">
+  <img id="frog" alt="Worry Frog">
+
+  <script>
+    const frog = document.getElementById('frog');
+
+    // 3 possible image sources
+    const images = [
+      'worryfrog.webp',
+      'blanket-froge.webp',
+      'sad-froge.webp'
+    ];
+
+    const randomImage = images[Math.floor(Math.random() * images.length)];
+    frog.src = randomImage;
+
+    function randomPosition() {
+      const maxX = window.innerWidth - frog.offsetWidth;
+      const maxY = window.innerHeight - frog.offsetHeight;
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+      frog.style.left = `${x}px`;
+      frog.style.top = `${y}px`;
+    }
+
+    // Make frog "flee" when hovered
+    frog.addEventListener('mouseenter', () => {
+      randomPosition();
+    });
+
+    // Optional: update boundaries if window is resized
+    window.addEventListener('resize', () => {
+      randomPosition();
+    });
+  </script>
 </body>
 </html>
