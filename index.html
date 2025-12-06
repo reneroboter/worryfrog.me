@@ -26,6 +26,11 @@
       height: auto;
       width: auto;
     }
+
+    img {
+      position: absolute;
+      transition: left 0.2s ease, top 0.2s ease;
+    }
   </style>
 </head>
 <body>
@@ -45,10 +50,13 @@
     frog.src = randomImage;
 
     function randomPosition() {
+      console.log('yes');
       const maxX = window.innerWidth - frog.offsetWidth;
       const maxY = window.innerHeight - frog.offsetHeight;
       const x = Math.random() * maxX;
       const y = Math.random() * maxY;
+      console.log(x)
+      console.log(y)
       frog.style.left = `${x}px`;
       frog.style.top = `${y}px`;
     }
