@@ -37,6 +37,9 @@
   <img id="frog" alt="Worry Frog">
 
   <script>
+    const basePoints = 1000;
+    let currentPoints = 0;
+    let startToHuntAt = Date.now();
     const frog = document.getElementById('frog');
 
     // 3 possible image sources
@@ -50,7 +53,6 @@
     frog.src = randomImage;
 
     function randomPosition() {
-      console.log('yes');
       const maxX = window.innerWidth - frog.offsetWidth;
       const maxY = window.innerHeight - frog.offsetHeight;
       const x = Math.random() * maxX;
@@ -61,8 +63,19 @@
       frog.style.top = `${y}px`;
     }
 
+    // simple ideas for point system
+    function calculatePoints() {
+      let catchedAt = Date.now();
+      let timeDifference = catchedAt - startToHuntAt;
+      console.log(`Took ${timeDifference} ms`);
+      currentPoints+= (basePoints / timeDifference) | 0;
+      console.log('points', currentPoints)
+      startToHuntAt = Date.now();
+    }
+
     // Make frog "flee" when hovered
     frog.addEventListener('mouseenter', () => {
+      calculatePoints();
       randomPosition();
     });
 
