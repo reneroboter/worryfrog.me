@@ -50,7 +50,7 @@
     ];
 
     const randomImage = images[Math.floor(Math.random() * images.length)];
-    frog.src = randomImage;
+    frog.src = 'img/' + randomImage;
 
     function randomPosition() {
       const maxX = window.innerWidth - frog.offsetWidth;
