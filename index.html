@@ -5,24 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>worryfrog.me</title>
   <style>
-    /* Make body take full height and remove default margins */
     html, body {
       height: 100%;
       margin: 0;
     }
 
-    /* Flex container to center content */
     body {
       display: flex;
-      justify-content: center; /* horizontal centering */
-      align-items: center;     /* vertical centering */
-      background-color: #f0f0f0; /* optional background color */
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
     }
 
-    /* Make image responsive */
     img {
-      max-width: 90%;   /* scale down on small screens */
-      max-height: 90%;  /* prevent overflow vertically */
+      max-width: 90%;
+      max-height: 90%;
       height: auto;
       width: auto;
     }
@@ -48,7 +45,6 @@
     let startToHuntAt = Date.now();
     const frog = document.getElementById('frog');
 
-    // 3 possible image sources
     const images = [
       'worryfrog.webp',
       'blanket-froge.webp',
@@ -71,21 +67,24 @@
 
     // simple ideas for point system
     function calculatePoints() {
-      let catchedAt = Date.now();
-      let timeDifference = catchedAt - startToHuntAt;
+      let caughtAt = Date.now();
+      let timeDifference = caughtAt - startToHuntAt;
       console.log(`Took ${timeDifference} ms`);
       currentPoints+= (basePoints / timeDifference) | 0;
       console.log('points', currentPoints)
       startToHuntAt = Date.now();
     }
 
-    // Make frog "flee" when hovered
     frog.addEventListener('mouseenter', () => {
       calculatePoints();
       randomPosition();
     });
 
-    // Optional: update boundaries if window is resized
+    frog.addEventListener('touchstart', () => {
+      calculatePoints();
+      randomPosition();
+    });
+
     window.addEventListener('resize', () => {
       randomPosition();
     });
